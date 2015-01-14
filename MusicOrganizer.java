@@ -189,4 +189,18 @@ public class MusicOrganizer
             System.out.println("No se han encontrado canciones con ese texto");
         }
     }
+    
+    /**
+     * Cambia el estilo musical de una cancion de la lista
+     * Se debe indicar el indice de la cancion empezando en 0
+     * Si la cancion no existe, lo indica
+     */
+    public void setTrackStyle(int index, String style){
+        if(index >= 0 && index < tracks.size()){
+            tracks.get(index).setStyle(style);
+            System.out.println("Estilo musical actualizado");
+        }else{
+            System.out.println("Ese indice no existe");
+        }
+    }
 }
