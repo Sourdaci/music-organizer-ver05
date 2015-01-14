@@ -170,4 +170,22 @@ public class MusicOrganizer
             addTrack(track);
         }
     }
+    
+    /**
+     * Muestra por pantalla la informacion de las canciones cuyo titulo contiene el texto buscado
+     * Si no encuentra ninguna, avisa de ello
+     */
+    public void findInTitle(String toFind){
+        boolean found = false;
+        for(Track song : tracks){
+            String songTitle = song.getTitle();
+            if(songTitle.contains(toFind)){
+                found = true;
+                System.out.println(song.getDetails());
+            }
+        }
+        if(!found){
+            System.out.println("No se han encontrado canciones con ese texto");
+        }
+    }
 }
