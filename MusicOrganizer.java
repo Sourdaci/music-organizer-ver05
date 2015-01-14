@@ -203,4 +203,15 @@ public class MusicOrganizer
             System.out.println("Ese indice no existe");
         }
     }
+    
+    /**
+     * Informa al usuario de si el reproductor esta en marcha
+     */
+    public void playerStarted(){
+        if(player.isPlaying()){
+            System.out.println("Hay una cancion reproduciendose actualmente");
+        }else{
+            System.out.println("El reproductor esta detenido");
+        }
+    }
 }

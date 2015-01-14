@@ -139,6 +139,19 @@ public class MusicPlayer
     }
     
     /**
+     * Indica si el reproductor esta en marcha
+     */
+    public boolean isPlaying(){
+        boolean actuallyPlaying = false;
+        synchronized(this) {
+            if(player != null) {
+                actuallyPlaying = true;
+            }
+        }
+        return actuallyPlaying;
+    }
+    
+    /**
      * Report a problem playing the given file.
      * @param filename The file being played.
      */
