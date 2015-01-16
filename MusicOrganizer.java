@@ -149,6 +149,20 @@ public class MusicOrganizer
     }
     
     /**
+     * Elimina las canciones cuyo titulo coincida con el buscado
+     * Utiliza la clase Iterator
+     */
+    public void removeByTitle(String titulo){
+        Iterator<Track> iteracion = tracks.iterator();
+        while(iteracion.hasNext()){
+            Track song = iteracion.next();
+            if(song.getTitle().contains(titulo)){
+                iteracion.remove();
+            }
+        }
+    }
+    
+    /**
      * Play the first track in the collection, if there is one.
      */
     public void playFirst()
