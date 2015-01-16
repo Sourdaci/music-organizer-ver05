@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.Collections;
 /**
  * A class to hold details of audio tracks.
  * Individual tracks may be played.
@@ -191,30 +192,16 @@ public class MusicOrganizer
      * Reproduce aleatoriamente el inicio de todas las canciones de la lista
      */
     public void playShuffle(){
-        int largo = tracks.size();
-        Boolean played[] = new Boolean[largo];
-        for(int i = 0; i < largo; i++){
-            played[i] = false;
+        ArrayList<Track> shuffleList = new ArrayList<Track>();
+        for(Track song : tracks){
+            shuffleList.add(song);
         }
-        Boolean acabado = false;
-        Random actual = new Random();
-        while(!acabado){
-            int seleccion = actual.nextInt(largo);
-            if(!played[seleccion]){
-                Track song = tracks.get(seleccion);
-                System.out.println(song.getDetails());
-                song.increasePlayCount();
-                player.playSample(song.getFilename());
-                played[seleccion] = true;
-            }
-            acabado = true;
-            for(Boolean comprobar : played){
-                if(!comprobar){
-                    acabado = false;
-                }
-            }
+        Collections.shuffle(shuffleList);
+        for(Track song : shuffleList){
+            System.out.println(song.getDetails());
+            song.increasePlayCount();
+            player.playSample(song.getFilename());
         }
-            
     }
     
     /**
