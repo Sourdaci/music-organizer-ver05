@@ -135,6 +135,20 @@ public class MusicOrganizer
     }
     
     /**
+     * Elimina las canciones cuyo artista coincida con el buscado
+     * Utiliza la clase Iterator
+     */
+    public void removeByArtist(String artista){
+        Iterator<Track> iteracion = tracks.iterator();
+        while(iteracion.hasNext()){
+            Track song = iteracion.next();
+            if(song.getArtist().contains(artista)){
+                iteracion.remove();
+            }
+        }
+    }
+    
+    /**
      * Play the first track in the collection, if there is one.
      */
     public void playFirst()
