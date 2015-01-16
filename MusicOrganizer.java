@@ -170,7 +170,9 @@ public class MusicOrganizer
     {
         if(tracks.size() > 0) {
             if(!player.isPlaying()){
-                player.startPlaying(tracks.get(0).getFilename());
+                Track song = tracks.get(0);
+                player.startPlaying(song.getFilename());
+                song.increasePlayCount();
             }else{
                 System.out.println("El reproductor ya esta en marcha, detengalo antes");
             }
@@ -183,6 +185,36 @@ public class MusicOrganizer
     public void playRandom(){
         Random aleatoria = new Random();
         playTrack(aleatoria.nextInt(tracks.size()));
+    }
+    
+    /**
+     * Reproduce aleatoriamente el inicio de todas las canciones de la lista
+     */
+    public void playShuffle(){
+        int largo = tracks.size();
+        Boolean played[] = new Boolean[largo];
+        for(int i = 0; i < largo; i++){
+            played[i] = false;
+        }
+        Boolean acabado = false;
+        Random actual = new Random();
+        while(!acabado){
+            int seleccion = actual.nextInt(largo);
+            if(!played[seleccion]){
+                Track song = tracks.get(seleccion);
+                System.out.println(song.getDetails());
+                song.increasePlayCount();
+                player.playSample(song.getFilename());
+                played[seleccion] = true;
+            }
+            acabado = true;
+            for(Boolean comprobar : played){
+                if(!comprobar){
+                    acabado = false;
+                }
+            }
+        }
+            
     }
     
     /**
