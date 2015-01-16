@@ -205,6 +205,30 @@ public class MusicOrganizer
     }
     
     /**
+     * Reproduce aleatoriamente el inicio de todas las canciones de la lista
+     */
+    public void playShuffle2(){
+        ArrayList<Track> shuffleList = new ArrayList<Track>(tracks);
+        /**
+         * Se supone que la primera linea deberian ser estas 2:
+         * 
+         * ArrayList<Track> shuffleList = new ArrayList<>(); 
+         * shuffleList = (ArrayList)tracks.clone();
+         * 
+         * Pero la compilacion tiene avisos (Warnings) y no quiero arriesgar
+         */
+        Collections.shuffle(shuffleList);
+        Iterator<Track> iteracion = shuffleList.iterator();
+        while(iteracion.hasNext()){
+            Track song = iteracion.next();
+            System.out.println(song.getDetails());
+            song.increasePlayCount();
+            player.playSample(song.getFilename());
+            iteracion.remove();
+        }
+    }
+    
+    /**
      * Stop the player.
      */
     public void stopPlaying()
